@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Pencil, Check, X } from "lucide-react";
 import useFetch from "@/hooks/use-fetch";
 import { toast } from "sonner";
-
+import { formatCurrency } from "@/lib/format";
 import {
   Card,
   CardContent,
@@ -22,7 +22,13 @@ export function BudgetProgress({ initialBudget, currentExpenses }) {
   const [newBudget, setNewBudget] = useState(
     initialBudget?.amount?.toString() || ""
   );
+  //formatter
+  // const formatter = new Intl.NumberFormat('en-IN', {
+  //   style: 'currency',
+  //   currency: 'INR',
+  // });
 
+  // formatter.format(12345.67); // ₹12,345.67
   const {
     loading: isLoading,
     fn: updateBudgetFn,
@@ -103,11 +109,10 @@ export function BudgetProgress({ initialBudget, currentExpenses }) {
               <>
                 <CardDescription>
                   {initialBudget
-                    ? `$${currentExpenses.toFixed(
-                        2
-                      )} of $${initialBudget.amount.toFixed(2)} spent`
+                    ? `${formatCurrency(currentExpenses)} of ${formatCurrency(initialBudget.amount)} spent`
                     : "No budget set"}
                 </CardDescription>
+
                 <Button
                   variant="ghost"
                   size="icon"
@@ -133,7 +138,7 @@ export function BudgetProgress({ initialBudget, currentExpenses }) {
                   : percentUsed >= 75
                     ? "bg-yellow-500"
                     : "bg-green-500"
-              }`}
+                }`}
             />
             <p className="text-xs text-muted-foreground text-right">
               {percentUsed.toFixed(1)}% used
