@@ -4,27 +4,25 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { motion, useAnimation } from "framer-motion";
 
 const HeroSection = () => {
+  const imageControls = useAnimation();
   const imageRef = useRef(null);
 
   useEffect(() => {
-    const imageElement = imageRef.current;
-
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const scrollThreshold = 100;
-
-      if (scrollPosition > scrollThreshold) {
-        imageElement.classList.add("scrolled");
+      const scrollY = window.scrollY;
+      if (scrollY > 100) {
+        imageControls.start({ scale: 1.05, opacity: 1, transition: { duration: 0.5 } });
       } else {
-        imageElement.classList.remove("scrolled");
+        imageControls.start({ scale: 1, opacity: 0.8, transition: { duration: 0.5 } });
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [imageControls]);
 
   return (
     <section className="pt-40 pb-20 px-4">
@@ -48,8 +46,15 @@ const HeroSection = () => {
             </Button>
           </Link>
         </div>
+
+        {/* ANIMATED IMAGE */}
         <div className="hero-image-wrapper mt-5 md:mt-0">
-          <div ref={imageRef} className="hero-image">
+          <motion.div
+            ref={imageRef}
+            animate={imageControls}
+            initial={{ scale: 1, opacity: 0.8 }}
+            className="hero-image"
+          >
             <Image
               src="/banner.jpeg"
               width={1280}
@@ -58,7 +63,7 @@ const HeroSection = () => {
               className="rounded-lg shadow-2xl border mx-auto"
               priority
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
