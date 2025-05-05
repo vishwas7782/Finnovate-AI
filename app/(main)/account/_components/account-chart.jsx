@@ -19,7 +19,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"; 
+} from "@/components/ui/select";
 import { formatCurrency } from "@/lib/format";
 
 
@@ -76,6 +76,9 @@ export function AccountChart({ transactions }) {
       { income: 0, expense: 0 }
     );
   }, [filteredData]);
+  const net = totals.income - totals.expense;
+  const netColor = net >= 0 ? "text-green-500" : "text-red-500";
+  const formattedNet = formatCurrency(net);
 
   return (
     <Card>
@@ -101,26 +104,20 @@ export function AccountChart({ transactions }) {
           <div className="text-center">
             <p className="text-muted-foreground">Total Income</p>
             <p className="text-lg font-bold text-green-500">
-            {formatCurrency(totals.income)}
+              {formatCurrency(totals.income)}
             </p>
           </div>
           <div className="text-center">
             <p className="text-muted-foreground">Total Expenses</p>
             <p className="text-lg font-bold text-red-500">
-            {formatCurrency(totals.income)}
+              {formatCurrency(totals.expense)}
 
             </p>
           </div>
           <div className="text-center">
             <p className="text-muted-foreground">Net</p>
-            <p
-              className={`text-lg font-bold ${
-                totals.income - totals.expense >= 0
-                  ? "text-green-500"
-                  : "text-red-500"
-              }`}
-            >
-               {formatCurrency(totals.income - totals.expense)}
+            <p className={`text-lg font-bold ${netColor}`}>
+              {formattedNet}
             </p>
           </div>
         </div>

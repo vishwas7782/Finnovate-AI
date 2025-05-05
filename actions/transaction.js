@@ -129,10 +129,8 @@ export async function updateTransaction(id, data) {
     const user = await db.user.findUnique({
       where: { clerkUserId: userId },
     });
-
     if (!user) throw new Error("User not found");
 
-    // Get original transaction to calculate balance change
     const originalTransaction = await db.transaction.findUnique({
       where: {
         id,
@@ -142,27 +140,21 @@ export async function updateTransaction(id, data) {
         account: true,
       },
     });
-
     if (!originalTransaction) throw new Error("Transaction not found");
 
-    // Calculate balance changes
-    const oldBalanceChange =
-      originalTransaction.type === "EXPENSE"
-        ? -originalTransaction.amount.toNumber()
-        : originalTransaction.amount.toNumber();
+    const oldAmount = originalTransaction.amount.toNumber();
+    const newAmount = Number(data.amount);
 
-    const newBalanceChange =
-      data.type === "EXPENSE" ? -data.amount : data.amount;
+    const accountChanged = originalTransaction.accountId !== data.accountId;
 
-    const netBalanceChange = newBalanceChange - oldBalanceChange;
+    const oldEffect =
+      originalTransaction.type === "EXPENSE" ? -oldAmount : oldAmount;
+    const newEffect = data.type === "EXPENSE" ? -newAmount : newAmount;
 
-    // Update transaction and account balance in a transaction
     const transaction = await db.$transaction(async (tx) => {
-      const updated = await tx.transaction.update({
-        where: {
-          id,
-          userId: user.id,
-        },
+      // Update the transaction
+      const updatedTransaction = await tx.transaction.update({
+        where: { id, userId: user.id },
         data: {
           ...data,
           nextRecurringDate:
@@ -172,27 +164,127 @@ export async function updateTransaction(id, data) {
         },
       });
 
-      // Update account balance
-      await tx.account.update({
-        where: { id: data.accountId },
-        data: {
-          balance: {
-            increment: netBalanceChange,
+      if (accountChanged) {
+        // Subtract from old account
+        await tx.account.update({
+          where: { id: originalTransaction.accountId },
+          data: {
+            balance: {
+              increment: -oldEffect,
+            },
           },
-        },
-      });
+        });
 
-      return updated;
+        // Add to new account
+        await tx.account.update({
+          where: { id: data.accountId },
+          data: {
+            balance: {
+              increment: newEffect,
+            },
+          },
+        });
+      } else {
+        // Same account: just update net change
+        const netChange = newEffect - oldEffect;
+
+        await tx.account.update({
+          where: { id: data.accountId },
+          data: {
+            balance: {
+              increment: netChange,
+            },
+          },
+        });
+      }
+
+      return updatedTransaction;
     });
 
     revalidatePath("/dashboard");
     revalidatePath(`/account/${data.accountId}`);
+    if (accountChanged) {
+      revalidatePath(`/account/${originalTransaction.accountId}`);
+    }
 
     return { success: true, data: serializeAmount(transaction) };
   } catch (error) {
     throw new Error(error.message);
   }
 }
+
+// export async function updateTransaction(id, data) {
+//   try {
+//     const { userId } = await auth();
+//     if (!userId) throw new Error("Unauthorized");
+
+//     const user = await db.user.findUnique({
+//       where: { clerkUserId: userId },
+//     });
+
+//     if (!user) throw new Error("User not found");
+
+//     // Get original transaction to calculate balance change
+//     const originalTransaction = await db.transaction.findUnique({
+//       where: {
+//         id,
+//         userId: user.id,
+//       },
+//       include: {
+//         account: true,
+//       },
+//     });
+
+//     if (!originalTransaction) throw new Error("Transaction not found");
+
+//     // Calculate balance changes
+//     const oldBalanceChange =
+//       originalTransaction.type === "EXPENSE"
+//         ? -originalTransaction.amount.toNumber()
+//         : originalTransaction.amount.toNumber();
+
+//     const newBalanceChange =
+//       data.type === "EXPENSE" ? -data.amount : data.amount;
+
+//     const netBalanceChange = newBalanceChange - oldBalanceChange;
+
+//     // Update transaction and account balance in a transaction
+//     const transaction = await db.$transaction(async (tx) => {
+//       const updated = await tx.transaction.update({
+//         where: {
+//           id,
+//           userId: user.id,
+//         },
+//         data: {
+//           ...data,
+//           nextRecurringDate:
+//             data.isRecurring && data.recurringInterval
+//               ? calculateNextRecurringDate(data.date, data.recurringInterval)
+//               : null,
+//         },
+//       });
+
+//       // Update account balance
+//       await tx.account.update({
+//         where: { id: data.accountId },
+//         data: {
+//           balance: {
+//             increment: netBalanceChange,
+//           },
+//         },
+//       });
+
+//       return updated;
+//     });
+
+//     revalidatePath("/dashboard");
+//     revalidatePath(`/account/${data.accountId}`);
+
+//     return { success: true, data: serializeAmount(transaction) };
+//   } catch (error) {
+//     throw new Error(error.message);
+//   }
+// }
 
 // Get User Transactions
 export async function getUserTransactions(query = {}) {
