@@ -146,13 +146,54 @@ export function DashboardOverview({ accounts, transactions }) {
       </Card>
 
       {/* Expense Breakdown Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base font-normal">
-            Monthly Expense Breakdown
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-0 pb-5">
+      <div className="overflow-x-auto">
+        <div className="min-w-[400px]">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base font-normal">
+                Monthly Expense Breakdown
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-0 pb-5">
+              {pieChartData.length === 0 ? (
+                <p className="text-center text-muted-foreground py-4">
+                  No expenses this month
+                </p>
+              ) : (
+                <div className="h-[300px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={pieChartData}
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                        label={({ name, value }) => `${name}: ${formatCurrency(value)}`}
+                      >
+                        {pieChartData.map((entry, index) => (
+                          <Cell
+                            key={`cell-${index}`}
+                            fill={COLORS[index % COLORS.length]}
+                          />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={formatCurrency}
+                        contentStyle={{
+                          backgroundColor: "hsl(var(--popover))",
+                          border: "1px solid hsl(var(--border))",
+                          borderRadius: "var(--radius)",
+                        }}
+                      />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              )}
+            </CardContent>
+            {/* <CardContent className="p-0 pb-5">
           {pieChartData.length === 0 ? (
             <p className="text-center text-muted-foreground py-4">
               No expenses this month
@@ -179,20 +220,22 @@ export function DashboardOverview({ accounts, transactions }) {
                     ))}
                   </Pie>
                   <Tooltip
-  formatter={formatCurrency}
-  contentStyle={{
-    backgroundColor: "hsl(var(--popover))",
-    border: "1px solid hsl(var(--border))",
-    borderRadius: "var(--radius)",
-  }}
-/>
+                    formatter={formatCurrency}
+                    contentStyle={{
+                      backgroundColor: "hsl(var(--popover))",
+                      border: "1px solid hsl(var(--border))",
+                      borderRadius: "var(--radius)",
+                    }}
+                  />
                   <Legend />
                 </PieChart>
               </ResponsiveContainer>
             </div>
           )}
-        </CardContent>
-      </Card>
+        </CardContent> */}
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }

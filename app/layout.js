@@ -12,7 +12,15 @@ export const metadata = {
   title: "FinnovateAI",
   description: "One stop Finance Platform",
 };
-
+// if (
+//   localStorage.theme === "dark" ||
+//   (!("theme" in localStorage) &&
+//     window.matchMedia("(prefers-color-scheme: dark)").matches)
+// ) {
+//   document.documentElement.classList.add("dark");
+// } else {
+//   document.documentElement.classList.remove("dark");
+// }
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
@@ -46,6 +54,10 @@ export default function RootLayout({ children }) {
                   className="rounded-full shadow-md hover:scale-105 transition-transform duration-300"
                 />
               </div>
+              <h1 className="text-2xl font-bold">
+                <span className="text-[#3B82F6]">Finnovate</span>{" "}
+                <span className="text-[#1E3A8A]">AI</span>
+              </h1>
             </div>
           </footer>
 

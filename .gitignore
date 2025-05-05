@@ -88,3 +88,7 @@ coverage/
 
 # Optional: If using typescript
 *.tsbuildinfo
+
+#seeding data
+actions/seed.js
+app/api/seed/

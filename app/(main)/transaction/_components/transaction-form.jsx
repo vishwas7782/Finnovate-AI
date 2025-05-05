@@ -8,7 +8,7 @@ import { format } from "date-fns";
 import { useRouter, useSearchParams } from "next/navigation";
 import useFetch from "@/hooks/use-fetch";
 import { toast } from "sonner";
-
+import { formatCurrency } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
@@ -180,7 +180,7 @@ export function AddTransactionForm({
             <SelectContent>
               {accounts.map((account) => (
                 <SelectItem key={account.id} value={account.id}>
-                  {account.name} (${parseFloat(account.balance).toFixed(2)})
+                  {account.name} ({formatCurrency(account.balance)})
                 </SelectItem>
               ))}
               <CreateAccountDrawer>
