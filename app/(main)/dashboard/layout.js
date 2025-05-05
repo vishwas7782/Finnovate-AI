@@ -2,7 +2,7 @@ import DashboardPage from "./page";
 import { BarLoader } from "react-spinners";
 import { Suspense } from "react";
 import { getUserDetails } from "@/actions/user-acc";
-import { Greeting } from "./_components/greetings"; // Create this file
+// import { Greeting } from "./_components/greetings"; // Create this file
 
 
 function getGreeting() {
@@ -14,6 +14,7 @@ function getGreeting() {
 
 export default async function Layout() {
   const user = await getUserDetails();
+  
   const name = user?.name?.split(" ")[0] || "there"; // fallback if name is missing
   const greeting = `${getGreeting()}, ${name}`;
 
