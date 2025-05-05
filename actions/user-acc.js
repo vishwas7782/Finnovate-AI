@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 export async function getUserDetails() {
     const { userId } = await auth();  // Get userId from the auth function
-    if (!userId) throw new Error("Unauthorized");
+    if (!userId) return null;
   
     // Fetch the user details from the database
     const user = await db.user.findUnique({
