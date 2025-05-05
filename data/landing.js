@@ -31,35 +31,39 @@ export const statsData = [
 export const featuresData = [
   {
     icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
-    title: "Advanced Analytics",
+    title: "Insightful Analytics",
     description:
-      "Get detailed insights into your spending patterns with AI-powered analytics",
+      "Uncover trends in your financial activity with AI-driven data visualizations and reports.",
   },
   {
     icon: <Receipt className="h-8 w-8 text-blue-600" />,
-    title: "Smart Receipt Scanner",
+    title: "AI Receipt Capture",
     description:
-      "Extract data automatically from receipts using advanced AI technology",
+      "Automatically pull key details from your receipts using intelligent document processing.",
   },
   {
     icon: <PieChart className="h-8 w-8 text-blue-600" />,
-    title: "Budget Planning",
-    description: "Create and manage budgets with intelligent recommendations",
+    title: "Smart Budget Manager",
+    description:
+      "Plan, track, and optimize your spending with adaptive budgeting tools and suggestions.",
   },
   {
     icon: <CreditCard className="h-8 w-8 text-blue-600" />,
-    title: "Multi-Account Support",
-    description: "Manage multiple accounts and credit cards in one place",
+    title: "Unified Account View",
+    description:
+      "Access and manage all your financial accounts and cards from a single secure dashboard.",
   },
   {
     icon: <Globe className="h-8 w-8 text-blue-600" />,
-    title: "Multi-Currency",
-    description: "Support for multiple currencies with real-time conversion",
+    title: "Goal-Based Planning",
+    description:
+      "Set savings or investment goals and receive AI guidance to stay on track with progress.",
   },
   {
     icon: <Zap className="h-8 w-8 text-blue-600" />,
-    title: "Automated Insights",
-    description: "Get automated financial insights and recommendations",
+    title: "Smart Finance Advisor",
+    description:
+      "Get real-time, automated recommendations to improve your financial health and habits.",
   },
 ];
 
@@ -67,45 +71,46 @@ export const featuresData = [
 export const howItWorksData = [
   {
     icon: <CreditCard className="h-8 w-8 text-blue-600" />,
-    title: "1. Create Your Account",
+    title: "1. Sign Up Instantly",
     description:
-      "Get started in minutes with our simple and secure sign-up process",
+      "Join in just a few clicks with our secure and hassle-free registration process.",
   },
   {
     icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
-    title: "2. Track Your Spending",
+    title: "2. Monitor Your Finances",
     description:
-      "Automatically categorize and track your transactions in real-time",
+      "Keep an eye on your spending with real-time transaction tracking and smart categorization.",
   },
   {
     icon: <PieChart className="h-8 w-8 text-blue-600" />,
-    title: "3. Get Insights",
+    title: "3. Unlock Financial Insights",
     description:
-      "Receive AI-powered insights and recommendations to optimize your finances",
+      "Get personalized AI insights and tips to manage your money more effectively.",
   },
 ];
+
 
 // Testimonials Data
 export const testimonialsData = [
   {
-    name: "Sarah Johnson",
-    role: "Small Business Owner",
-    image: "https://randomuser.me/api/portraits/women/75.jpg",
+    name: "Ritika Sharma",
+    role: "Startup Founder",
+    image: "https://randomuser.me/api/portraits/women/65.jpg",
     quote:
-      "Welth has transformed how I manage my business finances. The AI insights have helped me identify cost-saving opportunities I never knew existed.",
+      "Finnovate AI completely changed how I track my business expenses. The AI insights helped me cut down unnecessary costs and boost my profits.",
   },
   {
-    name: "Michael Chen",
-    role: "Freelancer",
-    image: "https://randomuser.me/api/portraits/men/75.jpg",
+    name: "Nishu Kumar",
+    role: "College Student",
+    image: "https://drive.google.com/uc?export=view&id=1SRsiCh85v9961Je2Zt83ZAdHiWHPnSpW",
     quote:
-      "The receipt scanning feature saves me hours each month. Now I can focus on my work instead of manual data entry and expense tracking.",
+      "The smart receipt scanner is a lifesaver! I no longer spend hours logging expenses—Finnovate AI does it all for me.",
   },
   {
-    name: "Emily Rodriguez",
-    role: "Financial Advisor",
-    image: "https://randomuser.me/api/portraits/women/74.jpg",
+    name: "Neha Iyer",
+    role: "Financial Consultant",
+    image: "https://randomuser.me/api/portraits/women/66.jpg",
     quote:
-      "I recommend Welth to all my clients. The multi-currency support and detailed analytics make it perfect for international investors.",
+      "I recommend Finnovate AI to clients for its precise analytics and user-friendly design. It's ideal for both salaried professionals and investors in India.",
   },
 ];
