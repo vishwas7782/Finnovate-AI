@@ -114,3 +114,130 @@ export const testimonialsData = [
       "I recommend Finnovate AI to clients for its precise analytics and user-friendly design. It's ideal for both salaried professionals and investors in India.",
   },
 ];
+
+
+// random data for animated landing
+// investor
+export const generatePortfolioLineData = () => {
+  const base = 10000 + Math.random() * 10000;
+  return ["Jan", "Feb", "Mar", "Apr", "May"].map((month, i) => ({
+    month,
+    value: Math.round(base + i * 1500 + Math.random() * 2000),
+  }));
+};
+
+export const generateInvestmentPieData = () => {
+  const stocks = Math.floor(Math.random() * 50) + 30; // 30–79%
+  const mutualFunds = Math.floor(Math.random() * (100 - stocks));
+  const bonds = 100 - stocks - mutualFunds;
+
+  return [
+    { name: "Stocks", value: stocks },
+    { name: "Mutual Funds", value: mutualFunds },
+    { name: "Bonds", value: bonds },
+  ];
+};
+
+export const generateMonthlyReturnData = () => {
+  return ["Jan", "Feb", "Mar", "Apr", "May"].map((month) => ({
+    month,
+    returns: Math.floor(500 + Math.random() * 2500),
+  }));
+};
+
+export const generateRiskLevel = () => Math.floor(Math.random() * 51) + 25; // 25%–75%
+
+export const generateReturnRate = () => Math.floor(Math.random() * 11) + 8; // 8%–18%
+
+export const generateMockBalance = () =>
+  Math.floor(30000 + Math.random() * 100000); // ₹30K to ₹130K
+
+// Saver landing
+// data/landing.js
+
+const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+export const getSaverLandingData = () => {
+  const savingsData = Array.from({ length: 5 }, (_, i) => ({
+    month: ["Jan", "Feb", "Mar", "Apr", "May"][i],
+    value: getRandomInt(3000, 10000),
+  }));
+
+  const monthlyTrackerData = [
+    { name: "Target", value: getRandomInt(4000, 8000) },
+    { name: "Actual", value: getRandomInt(3000, 7500) },
+  ];
+
+  const expensesData = [
+    { name: "Rent", value: getRandomInt(2500, 5000) },
+    { name: "Food", value: getRandomInt(1000, 2500) },
+    { name: "Utilities", value: getRandomInt(500, 1200) },
+    { name: "Others", value: getRandomInt(300, 1500) },
+  ];
+
+  const emergencyGoal = getRandomInt(8000, 20000);
+  const emergencySaved = getRandomInt(3000, emergencyGoal);
+
+  const savingsRate = getRandomInt(20, 60);
+
+  const balance = savingsData.reduce((sum, item) => sum + item.value, 0);
+
+  return {
+    savingsData,
+    monthlyTrackerData,
+    expensesData,
+    emergencyFund: {
+      goal: emergencyGoal,
+      saved: emergencySaved,
+    },
+    savingsRate,
+    balance,
+  };
+};
+
+// export const dummyData = {
+//   Investor: {
+//     balance: 12500.75,
+//     stocks: [
+//       { name: "AAPL", value: 187.21 },
+//       { name: "GOOGL", value: 2743.11 },
+//       { name: "TSLA", value: 702.32 },
+//     ],
+//     growth: "+6.3%",
+//   },
+//   Saver: {
+//     balance: 8600.45,
+//     goals: [
+//       { name: "Emergency Fund", progress: 75 },
+//       { name: "Vacation", progress: 45 },
+//     ],
+//     growth: "+3.1%",
+//   },
+// };
+// export const dummyData = {
+//   Investor: {
+//     balance: 12500.75,
+//     stocks: [
+//       { name: "AAPL", value: 187.21 },
+//       { name: "GOOGL", value: 2743.11 },
+//       { name: "TSLA", value: 702.32 },
+//     ],
+//     growth: "+6.3%",
+//     risk: 70, // Add risk level
+//     budgetUsed: 40, // Add budget used value
+//     allocation: 60, // Add allocation value
+//     goal: 10000, // Add savings goal value
+//   },
+//   Saver: {
+//     balance: 8600.45,
+//     goals: [
+//       { name: "Emergency Fund", progress: 75 },
+//       { name: "Vacation", progress: 45 },
+//     ],
+//     growth: "+3.1%",
+//     risk: 30, // Add risk level
+//     budgetUsed: 50, // Add budget used value
+//     allocation: 80, // Add allocation value
+//     goal: 12000, // Add savings goal value
+//   },
+// };
