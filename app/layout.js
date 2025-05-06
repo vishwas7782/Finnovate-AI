@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import Image from "next/image";
+import { Analytics } from "@vercel/analytics/react"
 
 import "./globals.css";
 import Header from "@/components/header";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
 
         </head>
         <body className={`${inter.className}`}>
+            <Analytics />
           <Header />
           <main className="min-h-screen">{children}</main>
           <Toaster richColors />
