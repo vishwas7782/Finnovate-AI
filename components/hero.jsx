@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion, useAnimation } from "framer-motion";
 import TypewriterEffect from '../app/utils/TypewriterEffect';
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs"; // Add this import at the top
 
 const HeroSection = () => {
   const [text, setText] = useState(""); // Initialize with an empty string
@@ -64,19 +65,28 @@ const HeroSection = () => {
   predictive analytics, and intelligent automation to help you grow wealth with confidence.
 </p>
 
-        {/* Action buttons */}
-        <div className="flex justify-center space-x-4">
-          <Link href="/dashboard">
-            <Button size="lg" className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white shadow-lg">
-              Get Started
-            </Button>
-          </Link>
-          <Link href="https://www.youtube.com/@vishwasjeetgupta8407">
-            <Button size="lg" variant="outline" className="px-8 py-3 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
-              Watch Demo
-            </Button>
-          </Link>
-        </div>
+<div className="flex justify-center space-x-4">
+  <SignedIn>
+    <Link href="/dashboard">
+      <Button size="lg" className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white shadow-lg">
+        Get Started
+      </Button>
+    </Link>
+  </SignedIn>
+  <SignedOut>
+    <SignInButton forceRedirectUrl="/dashboard">
+      <Button size="lg" className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white shadow-lg">
+        Get Started
+      </Button>
+    </SignInButton>
+  </SignedOut>
+
+  <Link href="https://www.youtube.com/@vishwasjeetgupta8407">
+    <Button size="lg" variant="outline" className="px-8 py-3 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
+      Watch Demo
+    </Button>
+  </Link>
+</div>
 
         {/* Animated Image */}
         <div className="hero-image-wrapper mt-5 md:mt-0">
