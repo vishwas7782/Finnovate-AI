@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import {
   featuresData,
   howItWorksData,
@@ -114,6 +115,7 @@ const LandingPage = () => {
             Join thousands of users who are already managing their finances
             smarter with FinnovateAI
           </p>
+          <SignedIn>
           <Link href="/dashboard">
             <Button
               size="lg"
@@ -122,6 +124,18 @@ const LandingPage = () => {
               Start Free Trial
             </Button>
           </Link>
+          </SignedIn>
+          <SignedOut>
+         <SignInButton forceRedirectUrl="/dashboard">
+            <Button
+              size="lg"
+              className="bg-white text-blue-600 hover:bg-blue-50 animate-bounce"
+            >
+              Start Free Trial
+            </Button>
+          </SignInButton>
+          </SignedOut>
+          
         </div>
       </section>
     </div>

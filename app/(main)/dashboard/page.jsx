@@ -8,7 +8,9 @@ import { BudgetProgress } from "./_components/budget-progress";
 import { Card, CardContent } from "@/components/ui/card";
 import { Plus } from "lucide-react";
 import { DashboardOverview } from "./_components/transaction-overview";
-
+// import { AiInsightsCard } from "./_components/ai-insight";
+import { getPersonalFinancialInsights } from "@/lib/gemini";
+// get Account data
 export default async function DashboardPage() {
   const [accounts, transactions] = await Promise.all([
     getUserAccounts(),
@@ -16,15 +18,23 @@ export default async function DashboardPage() {
   ]);
 
   const defaultAccount = accounts?.find((account) => account.isDefault);
+//ai insiaght
+  const aiInsights = await getPersonalFinancialInsights(transactions);
 
   // Get budget for default account
   let budgetData = null;
   if (defaultAccount) {
     budgetData = await getCurrentBudget(defaultAccount.id);
   }
+  
 
   return (
+    
     <div className="space-y-8">
+      
+            {/* AI Insight Section */}
+            {/* <AiInsightsCard insights={aiInsights} /> */}
+
       {/* Budget Progress */}
       <BudgetProgress
         initialBudget={budgetData?.budget}
