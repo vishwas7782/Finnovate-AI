@@ -64,9 +64,9 @@ export function AccountCard({ account }) {
           />
         </CardHeader>
         <CardContent>
-        <div className="text-2xl font-bold">
-  {formatCurrency(balance)}
-</div>
+          <div className="text-2xl font-bold">
+            {formatCurrency(balance)}
+          </div>
           <p className="text-xs text-muted-foreground">
             {type.charAt(0) + type.slice(1).toLowerCase()} Account
           </p>

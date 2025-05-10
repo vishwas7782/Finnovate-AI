@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <head>
-          <link rel="icon" href="/finnovateai_logo5.png" sizes="any" />
+          <link rel="icon" href="/mainlogo" sizes="any" />
           {/* <link
           href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
           rel="stylesheet"
