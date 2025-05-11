@@ -97,7 +97,7 @@ export function AiInsightsCard({ insights, loading }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
       {/* Spending Summary */}
-      <Card className="bg-white border-l-4 border-purple-600 shadow-lg rounded-xl p-5 flex flex-col h-full">
+      <Card className="bg-white border-l-4 border-purple-600 shadow-lg rounded-xl flex flex-col h-full min-h-[320px] transition-transform duration-300 hover:scale-105 hover:shadow-xl">
         <CardHeader className="flex items-center space-y-0 pb-4">
           <ArrowUpRight className="h-6 w-6 text-indigo-600 mr-2" />
           <CardTitle className="text-xl font-semibold text-indigo-700">
@@ -133,8 +133,8 @@ export function AiInsightsCard({ insights, loading }) {
       </Card>
 
       {/* Saving Suggestions */}
-      <Card className="bg-white border-l-4 border-green-600 shadow-lg rounded-xl p-5 flex flex-col h-full">
-        <CardHeader className="flex items-center mb-4">
+      <Card className="bg-white border-l-4 border-green-600 shadow-lg rounded-xl flex flex-col h-full min-h-[320px] transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+        <CardHeader className="flex items-center space-y-0 pb-4">
           <CheckCircle className="h-6 w-6 text-green-600 mr-2" />
           <CardTitle className="text-xl font-semibold text-green-700">
             Saving Suggestions
@@ -154,10 +154,10 @@ export function AiInsightsCard({ insights, loading }) {
               </ul>
               <div className="mt-3">
                 <Link href="/dashboard">
-                 <button className="w-full bg-green-600 text-white py-2 rounded-lg shadow-md hover:bg-green-700">
-                  Start Budgeting
-                </button></Link>
-               
+                  <button className="w-full bg-green-600 text-white py-2 rounded-lg shadow-md hover:bg-green-700">
+                    Start Budgeting
+                  </button>
+                </Link>
               </div>
             </>
           )}
@@ -165,8 +165,8 @@ export function AiInsightsCard({ insights, loading }) {
       </Card>
 
       {/* Warnings */}
-      <Card className="bg-white border-l-4 border-yellow-600 shadow-lg rounded-xl p-5 flex flex-col h-full">
-        <CardHeader className="flex items-center mb-4">
+      <Card className="bg-white border-l-4 border-yellow-600 shadow-lg rounded-xl  flex flex-col h-full min-h-[320px] transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+        <CardHeader className="flex items-center space-y-0 pb-4">
           <AlertTriangle className="h-6 w-6 text-yellow-600 mr-2" />
           <CardTitle className="text-xl font-semibold text-yellow-700">
             Warnings
@@ -188,8 +188,8 @@ export function AiInsightsCard({ insights, loading }) {
       </Card>
 
       {/* Actionable Insights */}
-      <Card className="bg-white border-l-4 border-blue-600 shadow-lg rounded-xl p-5 flex flex-col h-full">
-        <CardHeader className="flex items-center mb-4">
+      <Card className="bg-white border-l-4 border-blue-600 shadow-lg rounded-xl flex flex-col h-full min-h-[320px] transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+        <CardHeader className="flex items-center space-y-0 pb-4">
           <CheckCircle className="h-6 w-6 text-blue-600 mr-2" />
           <CardTitle className="text-xl font-semibold text-blue-700">
             Actionable Insights

@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { getUserDetails } from "@/actions/user-acc";
 import { Greeting } from "./_components/greetings"; // Create this file
 import { Sparkles } from "lucide-react";
+import FloatingChatbot from "../../insights/_components/FloatingChatbot";
 
 
 export default async function Layout() {
@@ -18,7 +19,7 @@ export default async function Layout() {
         <Link href="/insights">
           <button className="relative bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-all shadow-md flex items-center gap-2">
             <Sparkles size={18} />
-            <span className="hidden md:inline">View AI Insights</span>
+            <span className="hidden md:inline">Liora AI</span>
 
             {/* Badge */}
             {/* <span className="absolute top-0 right-0 -mt-2 -mr-2 bg-yellow-400 text-xs rounded-full px-1.5 py-0.5 text-black">
@@ -32,6 +33,7 @@ export default async function Layout() {
       >
         <DashboardPage />
       </Suspense>
+      <FloatingChatbot />
     </div>
   );
 }
