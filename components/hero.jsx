@@ -8,10 +8,29 @@ import { motion, useAnimation } from "framer-motion";
 import TypewriterEffect from "../app/utils/TypewriterEffect";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import AnimatedLanding from "./AnimatedLanding";
+import FloatingChatbot from "../app/insights/_components/FloatingChatbot";
 
 const HeroSection = () => {
   const imageControls = useAnimation();
   const imageRef = useRef(null);
+
+  // State to control when to load the chatbot
+  const [animationsComplete, setAnimationsComplete] = useState(false);
+
+  useEffect(() => {
+    // Trigger chatbot visibility after all animations settle
+    if (animationsComplete) {
+      setShowChatbot(true);
+    }
+  }, [animationsComplete]);
+
+  const textToType = "Where Finance Meets Intelligence";
+
+  const handleLandingAnimationComplete = () => {
+    setAnimationsComplete(true);  // Set animations to complete once landing animation finishes
+  };
+
+  const [showChatbot, setShowChatbot] = useState(false); // chatbot visibility state
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,35 +54,35 @@ const HeroSection = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [imageControls]);
 
-  const textToType = "Where Finance Meets Intelligence";
-
   return (
     <section className="pt-40 pb-20 px-4">
       <div className="container mx-auto text-center">
         <div className="absolute inset-0 z-0 overflow-hidden">
-  <svg className="w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
-        <stop offset="0%" stopColor="#00ff99" />
-        <stop offset="100%" stopColor="#00ffff" />
-      </linearGradient>
-    </defs>
-    <g fill="url(#grad)" opacity="0.1">
-      <circle cx="25%" cy="25%" r="60">
-        <animate attributeName="r" values="60;80;60" dur="6s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="75%" cy="70%" r="40">
-        <animate attributeName="r" values="40;60;40" dur="8s" repeatCount="indefinite" />
-      </circle>
-    </g>
-  </svg>
-</div>
+          <svg className="w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stopColor="#00ff99" />
+                <stop offset="100%" stopColor="#00ffff" />
+              </linearGradient>
+            </defs>
+            <g fill="url(#grad)" opacity="0.1">
+              <circle cx="25%" cy="25%" r="60">
+                <animate attributeName="r" values="60;80;60" dur="6s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="75%" cy="70%" r="40">
+                <animate attributeName="r" values="40;60;40" dur="8s" repeatCount="indefinite" />
+              </circle>
+            </g>
+          </svg>
+        </div>
         {/* Title with typewriter effect */}
-         <motion.h1
-                className="font-extrabold text-3xl text-[#1a202c]"
-              >
-                Finnovate <span className="text-[#4a6cb3]">AI</span>
-              </motion.h1>
+        <motion.h1
+          // className="font-extrabold text-3xl text-[#3B82F6]"
+          className="font-extrabold text-3xl text-[#1a202c]"
+        >
+          {/* Finnovate <span className="text-[#1E3A8A]">AI</span> */}
+           Finnovate <span className="text-[#4a6cb3]">AI</span>
+        </motion.h1>
         <motion.h1
           className="text-5xl md:text-8xl lg:text-[105px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-teal-400 to-purple-600 pb-6"
           initial={{ opacity: 0 }}
@@ -72,7 +91,6 @@ const HeroSection = () => {
         >
           <TypewriterEffect text={textToType} speed={100} />
         </motion.h1>
-        
 
         {/* Subheading paragraph animation */}
         <motion.p
@@ -85,13 +103,13 @@ const HeroSection = () => {
           predictive analytics, and intelligent automation to help you grow wealth with confidence.
         </motion.p>
 
-         {/* AI Animation */}
-        <motion.div 
-        className="relative w-full flex justify-center mt-4"
-           initial={{ opacity: 0, y: 20 }}
+        {/* AI Animation */}
+        <motion.div
+          className="relative w-full flex justify-center mt-4"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 3, duration: 1 }}
-          >
+        >
           <img
             src="aibg.gif"
             alt="AI Animation"
@@ -104,7 +122,7 @@ const HeroSection = () => {
           className="flex justify-center space-x-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3, duration: 1 }}
+          transition={{ delay: 3.2, duration: 1 }}
         >
           <SignedIn>
             <Link href="/dashboard">
@@ -132,6 +150,16 @@ const HeroSection = () => {
           </Link>
         </motion.div>
 
+        {/* Liora AI Assistant (Preview/Demo) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 3.4, duration: 1 }}
+          className="mt-10"
+        >
+          {showChatbot && <FloatingChatbot />}
+        </motion.div>
+
         {/* AnimatedLanding section with better animation */}
         <motion.div
           ref={imageRef}
@@ -141,6 +169,7 @@ const HeroSection = () => {
           transition={{ delay: 0.5, duration: 1 }}
           viewport={{ once: true }}
           className="hero-image-wrapper mt-10"
+          onAnimationComplete={handleLandingAnimationComplete}  // Trigger chatbot loading here
         >
           <motion.div
             initial={{ y: 50, opacity: 0 }}
