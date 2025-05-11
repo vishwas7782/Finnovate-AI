@@ -57,8 +57,10 @@ export default function RootLayout({ children }) {
                 />
               </div>
               <h1 className="text-2xl font-bold">
-                <span className="text-[#3B82F6]">Finnovate</span>{" "}
-                <span className="text-[#1E3A8A]">AI</span>
+                <span className="text-[#1a202c]">Finnovate</span>{" "}
+                {/* <span className="text-[#3B82F6]">Finnovate</span>{" "} */}
+                <span className="text-[#4a6cb3]">AI</span>
+                {/* <span className="text-[#1E3A8A]">AI</span> */}
               </h1>
             </div>
           </footer>
