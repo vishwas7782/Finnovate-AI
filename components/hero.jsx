@@ -40,6 +40,24 @@ const HeroSection = () => {
   return (
     <section className="pt-40 pb-20 px-4">
       <div className="container mx-auto text-center">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+  <svg className="w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stopColor="#00ff99" />
+        <stop offset="100%" stopColor="#00ffff" />
+      </linearGradient>
+    </defs>
+    <g fill="url(#grad)" opacity="0.1">
+      <circle cx="25%" cy="25%" r="60">
+        <animate attributeName="r" values="60;80;60" dur="6s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="75%" cy="70%" r="40">
+        <animate attributeName="r" values="40;60;40" dur="8s" repeatCount="indefinite" />
+      </circle>
+    </g>
+  </svg>
+</div>
         {/* Title with typewriter effect */}
          <motion.h1
                 className="font-extrabold text-3xl text-[#1a202c]"
@@ -54,6 +72,7 @@ const HeroSection = () => {
         >
           <TypewriterEffect text={textToType} speed={100} />
         </motion.h1>
+        
 
         {/* Subheading paragraph animation */}
         <motion.p
@@ -65,6 +84,20 @@ const HeroSection = () => {
           Finnovate AI transforms the way you manage finances — with personalized insights,
           predictive analytics, and intelligent automation to help you grow wealth with confidence.
         </motion.p>
+
+         {/* AI Animation */}
+        <motion.div 
+        className="relative w-full flex justify-center mt-4"
+           initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 3, duration: 1 }}
+          >
+          <img
+            src="aibg.gif"
+            alt="AI Animation"
+            className="w-60 h-45 sm:w-72 sm:h-56 md:w-80 md:h-64 lg:w-96 lg:h-72 opacity-80 pointer-events-none"
+          />
+        </motion.div>
 
         {/* Buttons */}
         <motion.div
