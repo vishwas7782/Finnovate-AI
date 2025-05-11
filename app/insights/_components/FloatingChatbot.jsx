@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { Mic, Send, Sparkles, MessageSquare, X } from "lucide-react";
+import { Mic, Send, Sparkles, BotMessageSquare , X } from "lucide-react";
 
 export default function FloatingChatbot() {
   const [messages, setMessages] = useState([]);
@@ -9,32 +9,6 @@ export default function FloatingChatbot() {
   const [isOpen, setIsOpen] = useState(false); // ← added for collapse toggle
   const recognitionRef = useRef(null);
 
-//   const handleSend = async (customInput) => {
-//     const finalInput = customInput || input;
-//     if (!finalInput.trim()) return;
-
-//     const userMessage = { sender: "user", text: finalInput };
-//     setMessages((prev) => [...prev, userMessage]);
-//     setInput("");
-
-//     const res = await fetch("/api/insights", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ query: finalInput }),
-//     });
-
-//     const [isTyping, setIsTyping] = useState(false);
-
-
-//     const data = await res.json();
-//     const botMessage = {
-//       sender: "bot",
-//       text: data.answer?.answer || "Sorry, something went wrong.",
-//       followUpSuggestions: data.answer?.followUpSuggestions || [],
-//     };
-
-//     setMessages((prev) => [...prev, botMessage]);
-//   };
 
 //handle send 
 const [isTyping, setIsTyping] = useState(false);
@@ -105,14 +79,14 @@ const handleSend = async (customInput) => {
   return (
     <>
       {/* Toggle Button */}
-      {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 bg-purple-600 text-white p-3 rounded-full shadow-lg z-50"
-        >
-          <MessageSquare size={20} />
-        </button>
-      )}
+   {!isOpen && (
+  <button
+    onClick={() => setIsOpen(true)}
+    className="fixed bottom-6 right-4 p-0 shadow-none z-50 flex items-center justify-center"
+  >
+    <img src="/lioraicon4.gif" alt="chatbot" className="w-25 h-25" />
+  </button>
+)}
 
       {/* Chatbot UI */}
       {isOpen && (

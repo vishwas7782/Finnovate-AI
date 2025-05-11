@@ -11,7 +11,7 @@ export default async function InsightsPage() {
   
 
   return (
-    <div className="px-4 space-y-6"> {/* Added pt-24 for padding-top */}
+    <div className="space-y-6"> {/* Added pt-24 for padding-top */}
       {/* <h1 className="text-2xl font-bold">🔍 Your AI Financial Insights</h1> */}
       
       <Suspense fallback={<BarLoader width="100%" color="#9333ea" />}>
