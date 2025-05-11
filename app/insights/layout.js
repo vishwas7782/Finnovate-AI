@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { getUserDetails } from "@/actions/user-acc";
 import InsightsPage from "./page";
 import { Sparkles } from "lucide-react";
+import FloatingChatbot from "./_components/FloatingChatbot";
 
 export default async function Layout() {
   const user = await getUserDetails();
@@ -30,6 +31,7 @@ export default async function Layout() {
           <InsightsPage />
         </Suspense>
       </div>
+       <FloatingChatbot />
     </div>
   );
 }
