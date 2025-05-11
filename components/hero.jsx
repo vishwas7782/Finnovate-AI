@@ -57,24 +57,6 @@ const HeroSection = () => {
   return (
     <section className="pt-40 pb-20 px-4">
       <div className="container mx-auto text-center">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <svg className="w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stopColor="#00ff99" />
-                <stop offset="100%" stopColor="#00ffff" />
-              </linearGradient>
-            </defs>
-            <g fill="url(#grad)" opacity="0.1">
-              <circle cx="25%" cy="25%" r="60">
-                <animate attributeName="r" values="60;80;60" dur="6s" repeatCount="indefinite" />
-              </circle>
-              <circle cx="75%" cy="70%" r="40">
-                <animate attributeName="r" values="40;60;40" dur="8s" repeatCount="indefinite" />
-              </circle>
-            </g>
-          </svg>
-        </div>
         {/* Title with typewriter effect */}
         <motion.h1
           // className="font-extrabold text-3xl text-[#3B82F6]"
