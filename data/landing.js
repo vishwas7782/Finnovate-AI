@@ -5,16 +5,19 @@ import {
   CreditCard,
   Globe,
   Zap,
+  Sparkle,
+  Bot
 } from "lucide-react";
+import Image from "next/image";
 
 // Stats Data
 export const statsData = [
   {
-    value: "50K+",
+    value: "1K+",
     label: "Active Users",
   },
   {
-    value: "$2B+",
+    value: "₹1M+",
     label: "Transactions Tracked",
   },
   {
@@ -34,6 +37,12 @@ export const featuresData = [
     title: "Insightful Analytics",
     description:
       "Uncover trends in your financial activity with AI-driven data visualizations and reports.",
+  },
+    {
+    icon: <Sparkle className="h-8 w-8 text-blue-600" />,
+    title: "Liora: Smart Finance Assistant",
+    description:
+      "Get real-time, automated recommendations to improve your financial health and habits.",
   },
   {
     icon: <Receipt className="h-8 w-8 text-blue-600" />,
@@ -58,12 +67,6 @@ export const featuresData = [
     title: "Goal-Based Planning",
     description:
       "Set savings or investment goals and receive AI guidance to stay on track with progress.",
-  },
-  {
-    icon: <Zap className="h-8 w-8 text-blue-600" />,
-    title: "Smart Finance Advisor",
-    description:
-      "Get real-time, automated recommendations to improve your financial health and habits.",
   },
 ];
 
@@ -95,7 +98,7 @@ export const testimonialsData = [
   {
     name: "Ritika Sharma",
     role: "Startup Founder",
-    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    image: "https://drive.google.com/uc?export=view&id=1l3g0Gzrkt1p8Qeb15NSm8l_I-9_rr98n", 
     quote:
       "Finnovate AI completely changed how I track my business expenses. The AI insights helped me cut down unnecessary costs and boost my profits.",
   },
@@ -109,7 +112,7 @@ export const testimonialsData = [
   {
     name: "Neha Iyer",
     role: "Financial Consultant",
-    image: "https://randomuser.me/api/portraits/women/66.jpg",
+    image: "https://drive.google.com/uc?export=view&id=1NIL3_Gwte4zSn4pBSpKI5EDyltb1a3lu",
     quote:
       "I recommend Finnovate AI to clients for its precise analytics and user-friendly design. It's ideal for both salaried professionals and investors in India.",
   },
