@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Plus } from "lucide-react";
 import { DashboardOverview } from "./_components/transaction-overview";
 // import { AiInsightsCard } from "./_components/ai-insight";
-import { getPersonalFinancialInsights } from "@/lib/gemini";
+// import { getPersonalFinancialInsights } from "@/lib/gemini";
 // get Account data
 export default async function DashboardPage() {
   const [accounts, transactions] = await Promise.all([
@@ -19,7 +19,7 @@ export default async function DashboardPage() {
 
   const defaultAccount = accounts?.find((account) => account.isDefault);
 //ai insiaght
-  const aiInsights = await getPersonalFinancialInsights(transactions);
+  // const aiInsights = await getPersonalFinancialInsights(transactions);
 
   // Get budget for default account
   let budgetData = null;
