@@ -1,4 +1,4 @@
-##### Coming soon...# Finnovate AI – Your Personalized AI Financial Advisor & Manager
+# Finnovate AI – Your Personalized AI Financial Advisor & Manager
 
 
 Finnovate AI is an intelligent AI-powered financial assistant designed to simplify and optimize your personal finance management. From expense tracking to personalized saving suggestions, Finnovate AI helps you make informed financial decisions and stay on top of your budget.
