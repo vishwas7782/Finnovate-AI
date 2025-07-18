@@ -3,7 +3,10 @@
 
 Finnovate AI is an intelligent AI-powered financial assistant designed to simplify and optimize your personal finance management. From expense tracking to personalized saving suggestions, Finnovate AI helps you make informed financial decisions and stay on top of your budget.
 
+<<<<<<< HEAD
 🔗 **Live Demo:** [https://finnovate-ai-lac.vercel.app/](https://finnovate-ai-lac.vercel.app/)
+=======
+>>>>>>> a8689a0f963f9d85ff7010d95cb81a74b579857f
 
 Built with **Node.js**, **Node.js**, **Supabase**, **Tailwind CSS**, **Prisma**, **Inngest**, **ArcJet**, and **Shadcn UI**, Finnovate AI provides you with actionable insights to manage your money effortlessly.
 
